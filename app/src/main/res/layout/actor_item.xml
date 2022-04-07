@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="155dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless">
+
+    <ImageView
+        android:id="@+id/actor_item_img"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background"
+        tools:ignore="ContentDescription"/>
+
+    <TextView
+        android:id="@+id/actor_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/actor_item_img"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:text="Jean Louis"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/actor_job"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/actor_name"
+        android:text="Réalisateur"
+        android:textSize="11sp"
+        android:textAllCaps="true"
+        android:layout_marginTop="4dp"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/backdrop_img"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/gradient_img"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:src="@drawable/gradient_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+    
+    <ImageView
+        android:id="@+id/poster_img"
+        android:layout_width="125dp"
+        android:layout_height="175dp"
+        android:layout_alignParentStart="true"
+        app:layout_constraintBottom_toBottomOf="@id/backdrop_img"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backdrop_img"
+        android:layout_marginStart="16dp"
+        tools:ignore="ContentDescription"
+        android:scaleType="centerCrop"
+        android:background="@android:color/holo_red_light"/>
+
+    <TextView
+        android:id="@+id/movie_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/poster_img"
+        app:layout_constraintTop_toBottomOf="@id/backdrop_img"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        android:text="Vahiana"
+        android:textAllCaps="true"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/movie_director"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/poster_img"
+        app:layout_constraintTop_toBottomOf="@id/movie_title"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="11sp"
+        android:textAllCaps="true"
+        android:text="par J.M Aulas, France, 2017"/>
+
+    <LinearLayout
+        android:id="@+id/watchlist_part"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/poster_img"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="?android:attr/ratingBarStyleIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="10dp"/>
+
+        <Button
+            android:id="@+id/add_watchlist_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_watchlist_button"
+            android:layout_marginStart="10dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/separator"
+        android:layout_marginTop="8sp"
+        app:layout_constraintTop_toBottomOf="@id/watchlist_part"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#ffffff"/>
+
+    <TextView
+        android:id="@+id/synopsis_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/separator"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textAllCaps="true"
+        android:text="le synopsis"/>
+
+    <TextView
+        android:id="@+id/synopsis_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/synopsis_label"
+        android:textSize="12sp"
+        android:text="Le narrateur, sans identité précise, vit seul, travaille seul, dort seul, mange seul ses plateaux‐repas pour une personne comme beaucoup d’autres personnes seules qui connaissent la misère humaine, morale et sexuelle. C’est pourquoi il va devenir membre du Fight club, un lieu clandestin où il va pouvoir retrouver sa virilité, l’échange et la communication. Ce club est dirigé par Tyler Durden, une sorte d’anarchiste entre gourou et philosophe qui prêche l’amour de son prochain."
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"/>
+
+    <TextView
+        android:id="@+id/actors_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/synopsis_text"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textAllCaps="true"
+        android:text="les acteurs"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/actors_part"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/actors_label"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
