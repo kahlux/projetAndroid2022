@@ -1,19 +1,23 @@
 package com.example.projetandroid2022.entities;
 
-import android.media.Image;
-
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Resource {
-    private String name, synopsis, realisateur, date, origine, backdropURL, posterURL;
+    int id;
+    private String name, synopsis, date, origine, backdropURL, posterURL;
     private List<Actor> acteurs;
 
     public Resource() {
         acteurs = new ArrayList<>();
-        backdropURL = "@drawable/default_backdrop";
-        posterURL = "@drawable/default_poster";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -30,14 +34,6 @@ public class Resource {
 
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
-    }
-
-    public String getRealisateur() {
-        return realisateur;
-    }
-
-    public void setRealisateur(String realisateur) {
-        this.realisateur = realisateur;
     }
 
     public String getDate() {
