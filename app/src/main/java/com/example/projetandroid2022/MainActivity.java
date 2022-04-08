@@ -1,5 +1,6 @@
 package com.example.projetandroid2022;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -73,9 +75,11 @@ public class MainActivity extends AppCompatActivity implements ResourceItemClick
             //TODO: erreur de connexions, générer quelque chose...
         }
     }
-
     @Override
     public void onResourceClick(Resource resource, ImageView movieImageView) {
+        Intent i = new Intent(this,ResourceActivity.class);
+        i.putExtra("resource",  resource);
+        startActivity(i);
         Toast.makeText(this, resource.toString(), Toast.LENGTH_LONG).show();
     }
 
@@ -118,15 +122,15 @@ public class MainActivity extends AppCompatActivity implements ResourceItemClick
             ArrayList<Actor> response = new ArrayList<>();
             try {
                 JSONArray cast = jso.getJSONArray("cast");
-                for(int i = 0; i < 5; i++) {
+                for(int i = 0; i <cast.length(); i++) {
                     Actor actor = new Actor();
                     JSONObject actorJSON = cast.getJSONObject(i);
                     try { actor.setNom(actorJSON.getString("name")); }
                     catch(JSONException e) { actor.setNom("Pas plus d'infos"); }
                     try { actor.setPersonnage(actorJSON.getString("character")); }
                     catch(JSONException e) { actor.setPersonnage("Pas plus d'informations"); }
-                    try { actor.setUrl(actorJSON.getString("profile_path")); }
-                    catch(JSONException e) { actor.setNom("@drawable/default_profile_picture"); }
+                    try { actor.setUrl("https://image.tmdb.org/t/p/original"+actorJSON.getString("profile_path")); }
+                    catch(JSONException e) { actor.setUrl(null); }
                     response.add(actor);
                 }
             } catch(JSONException e) {

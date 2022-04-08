@@ -1,9 +1,10 @@
 package com.example.projetandroid2022.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Resource {
+public class Resource  implements Serializable {
     int id;
     private String name, synopsis, date, backdropURL, posterURL;
     private List<Actor> acteurs;
