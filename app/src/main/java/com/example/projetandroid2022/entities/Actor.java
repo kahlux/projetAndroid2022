@@ -1,6 +1,8 @@
 package com.example.projetandroid2022.entities;
 
-public class Actor {
+import java.io.Serializable;
+
+public class Actor implements Serializable {
     String nom;
     String url;
     String personnage ;
