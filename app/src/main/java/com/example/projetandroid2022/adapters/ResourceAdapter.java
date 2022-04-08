@@ -37,7 +37,12 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         myViewHolder.TvTitle.setText(mData.get(i).getName());
-        Picasso.get().load(mData.get(i).getPosterURL()).into(myViewHolder.ImgMovie);
+        String url = mData.get(i).getPosterURL();
+        if(url != null) {
+            Picasso.get().load(mData.get(i).getPosterURL()).into(myViewHolder.ImgMovie);
+        } else {
+            myViewHolder.ImgMovie.setImageResource(R.drawable.default_poster);
+        }
     }
 
     @Override

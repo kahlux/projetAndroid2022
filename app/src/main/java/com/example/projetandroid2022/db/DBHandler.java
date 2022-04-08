@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.projetandroid2022.entities.WatchListEntry;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,17 +38,21 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insertEntry(WatchListEntry entry) {
+    public boolean insertEntry(WatchListEntry entry) {
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues row = new ContentValues();
         row.put(DBContract.Form.ID, entry.getId());
         row.put(DBContract.Form.ID_RESOURCE, entry.getResourceId());
-        row.put(DBContract.Form.COLUMN_DATE, entry.getDate());
-        row.put(DBContract.Form.COLUMN_RATING, entry.getNote());
-        row.put(DBContract.Form.COLUMN_EPISODE, entry.getEpisode());
-        row.put(DBContract.Form.COLUMN_SEASON, entry.getSeason());
+        row.put(DBContract.Form.COLUMN_DATE, entry.getDateOfViewing().toString());
+        row.put(DBContract.Form.COLUMN_RATING, entry.getRating());
+        row.put(DBContract.Form.COLUMN_IS_SHOW, entry.isShow());
 
-        long newRowId = db.insert(DBContract.Form.TABLE_NAME,null,row);
+        return db.insert(DBContract.Form.TABLE_NAME,null,row) > 0;
+    }
+
+    public boolean deleteEntryById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.delete(DBContract.Form.TABLE_NAME, DBContract.Form.ID+"="+id,null) > 0;
     }
 
     public List<WatchListEntry> listAllEntries() {
@@ -57,8 +63,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 DBContract.Form.ID_RESOURCE,
                 DBContract.Form.COLUMN_DATE,
                 DBContract.Form.COLUMN_RATING,
-                DBContract.Form.COLUMN_EPISODE,
-                DBContract.Form.COLUMN_SEASON
+                DBContract.Form.COLUMN_IS_SHOW
         };
 
         Cursor cursor = db.query(
@@ -73,18 +78,16 @@ public class DBHandler extends SQLiteOpenHelper {
 
         List<WatchListEntry> entries = new ArrayList<>();
         while(cursor.moveToNext()){
-            int id = cursor.getInt((int)cursor.getColumnIndex(DBContract.Form.ID));
-            int idResource = cursor.getInt((int)cursor.getColumnIndex(DBContract.Form.ID_RESOURCE));
-            String date = cursor.getString((int)cursor.getColumnIndex(DBContract.Form.COLUMN_DATE));
-            int note = cursor.getInt((int)cursor.getColumnIndex(DBContract.Form.COLUMN_RATING));
-            int episode = cursor.getInt((int)cursor.getColumnIndex(DBContract.Form.COLUMN_EPISODE));
-            int saison = cursor.getInt((int)cursor.getColumnIndex(DBContract.Form.COLUMN_SEASON));
-
-            WatchListEntry entry = null;
-            new Response(name, date,genre,cursor.getInt((int)cursor.getColumnIndex(DBContract.Form._ID)),note);
+            WatchListEntry entry = new WatchListEntry();
+            entry.setId(cursor.getInt((int) cursor.getColumnIndex(DBContract.Form.ID)));
+            entry.setResourceId(cursor.getInt((int) cursor.getColumnIndex(DBContract.Form.ID_RESOURCE)));
+            entry.setDateOfViewing(Date.valueOf(cursor.getString((int) cursor.getColumnIndex(DBContract.Form.COLUMN_DATE))));
+            entry.setRating(cursor.getInt((int) cursor.getColumnIndex(DBContract.Form.COLUMN_RATING)));
+            entry.setIfItIsShow(cursor.getInt((int) cursor.getColumnIndex(DBContract.Form.COLUMN_IS_SHOW)) == 1);
             entries.add(entry);
         }
         cursor.close();
+
         return entries;
     }
 }

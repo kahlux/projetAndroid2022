@@ -1,16 +1,8 @@
 <resources>
-    <string name="app_name">Watch List</string>
-    <string name="homescreen_title">À la mode !</string>
+    <string name="app_name">Easy Watchlist !</string>
+    <string name="homescreen_title">Tendances</string>
     <string name="homescreen_movie_title">Les films :</string>
-    <string name="movie_part_title">Les films du moment</string>
-    <string name="show_part_title">Les séries du moment</string>
+    <string name="movie_part_title">Les films :</string>
+    <string name="show_part_title">Les séries :</string>
     <string name="add_watchlist_button">+ watchlist</string>
-
-    <string-array name="note_array">
-        <item>1/5</item>
-        <item>2/5</item>
-        <item>3/5</item>
-        <item>4/5</item>
-        <item>5/5</item>
-    </string-array>
 </resources>

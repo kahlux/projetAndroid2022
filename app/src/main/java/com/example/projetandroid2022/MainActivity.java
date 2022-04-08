@@ -63,12 +63,14 @@ public class MainActivity extends AppCompatActivity implements ResourceItemClick
             showsRV.setAdapter(showsAdapter);
             showsRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
         } else {
-            //TODO: erreur de connexion générer quelque chose...
+            //TODO: erreur de connexions générer quelque chose...
         }
         if(movies != null) {
             ResourceAdapter moviesAdapter = new ResourceAdapter(this, movies, this);
             moviesRV.setAdapter(moviesAdapter);
             moviesRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+        } else {
+            //TODO: erreur de connexions, générer quelque chose...
         }
     }
 
@@ -151,12 +153,12 @@ public class MainActivity extends AppCompatActivity implements ResourceItemClick
                         try { resource.setDate(resourceJSON.getString("release_date")); }
                         catch(JSONException e) { resource.setDate("Date inconnue"); }
                         try { resource.setName(resourceJSON.getString("title")); }
-                        catch(JSONException e) { resource.setName("lol"); }
+                        catch(JSONException e) { resource.setName("titre"); }
                     }
-                    try { resource.setBackdropURL("https://image.tmdb.org/t/p/original"+resourceJSON.getString("backdrop_path")); }
-                    catch(JSONException e) { resource.setBackdropURL("@drawable/default_backdrop"); }
                     try { resource.setPosterURL("https://image.tmdb.org/t/p/original"+resourceJSON.getString("poster_path")); }
-                    catch(JSONException e) { resource.setPosterURL("@drawable/default_poster"); }
+                    catch(JSONException e) { resource.setPosterURL(null); }
+                    try { resource.setBackdropURL("https://image.tmdb.org/t/p/original"+resourceJSON.getString("backdrop_path")); }
+                    catch(JSONException e) { resource.setBackdropURL(null); }
                     try { resource.setSynopsis(resourceJSON.getString("overview")); }
                     catch(JSONException e) { resource.setSynopsis("Pas de description retrouvées"); }
                     ArrayList<Actor> actors = (ArrayList<Actor>) getActorsFromResourceId(resourceJSON.getInt("id"), isShow);
