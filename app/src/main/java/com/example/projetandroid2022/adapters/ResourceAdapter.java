@@ -27,14 +27,11 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.MyView
         resourceItemClickListener = listener;
     }
 
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(context).inflate(R.layout.home_item,viewGroup,false);
         return new MyViewHolder(view);
-
-
     }
 
     @Override

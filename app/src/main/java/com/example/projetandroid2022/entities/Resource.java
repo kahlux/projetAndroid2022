@@ -5,11 +5,25 @@ import java.util.List;
 
 public class Resource {
     int id;
-    private String name, synopsis, date, origine, backdropURL, posterURL;
+    private String name, synopsis, date, backdropURL, posterURL;
     private List<Actor> acteurs;
+    private boolean isShow;
 
     public Resource() {
         acteurs = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return "Resource{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", synopsis='" + synopsis + '\'' +
+                ", date='" + date + '\'' +
+                ", backdropURL='" + backdropURL + '\'' +
+                ", posterURL='" + posterURL + '\'' +
+                ", acteurs=" + acteurs.toString() +
+                '}';
     }
 
     public int getId() {
@@ -42,14 +56,6 @@ public class Resource {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public String getOrigine() {
-        return origine;
-    }
-
-    public void setOrigine(String origine) {
-        this.origine = origine;
     }
 
     public String getBackdropURL() {

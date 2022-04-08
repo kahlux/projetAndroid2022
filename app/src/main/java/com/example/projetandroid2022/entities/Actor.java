@@ -28,4 +28,13 @@ public class Actor {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "nom='" + nom + '\'' +
+                ", url='" + url + '\'' +
+                ", personnage='" + personnage + '\'' +
+                '}';
+    }
 }
