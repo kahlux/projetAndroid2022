@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Easy Watchlist !</string>
-    <string name="homescreen_title">Tendances</string>
-    <string name="homescreen_movie_title">Les films :</string>
     <string name="movie_part_title">Les films :</string>
     <string name="show_part_title">Les séries :</string>
     <string name="add_watchlist_button">+ watchlist</string>
@@ -14,5 +12,10 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="watchlist_title">Votre watchlist</string>
+    <string name="watchlist_title">watchlist</string>
+    <string name="homescreen_title">tendances</string>
+    <string name="movie">films</string>
+    <string name="tvshow">séries</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -83,7 +83,7 @@ public class DBHandler extends SQLiteOpenHelper {
             entry.setResourceId(cursor.getInt((int) cursor.getColumnIndex(DBContract.Form.ID_RESOURCE)));
             entry.setDateOfViewing(Date.valueOf(cursor.getString((int) cursor.getColumnIndex(DBContract.Form.COLUMN_DATE))));
             entry.setRating(cursor.getInt((int) cursor.getColumnIndex(DBContract.Form.COLUMN_RATING)));
-            entry.setIfItIsShow(cursor.getInt((int) cursor.getColumnIndex(DBContract.Form.COLUMN_IS_SHOW)) == 1);
+            entry.setShow(cursor.getInt((int) cursor.getColumnIndex(DBContract.Form.COLUMN_IS_SHOW)) == 1);
             entries.add(entry);
         }
         cursor.close();

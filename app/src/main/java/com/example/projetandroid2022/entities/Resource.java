@@ -82,4 +82,12 @@ public class Resource  implements Serializable {
     public void setActeurs(List<Actor> acteurs) {
         this.acteurs = acteurs;
     }
+
+    public boolean isShow() {
+        return isShow;
+    }
+
+    public void setShow(boolean show) {
+        isShow = show;
+    }
 }

@@ -1,81 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
-    <RelativeLayout
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity">
+    <ImageView
+        android:id="@+id/backdrop_img"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/home_cover"
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/gradient_img"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:src="@drawable/gradient_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"/>
+
+    <TextView
+        android:id="@+id/homepage_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/backdrop_img"
+        app:layout_constraintStart_toStartOf="@id/backdrop_img"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/watchlist_title"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/watchlist_tabs"
+        app:layout_constraintTop_toBottomOf="@id/backdrop_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/main_activity">
-        <ImageView
-            android:id="@+id/backdrop_img"
-            android:layout_width="match_parent"
-            android:layout_height="225dp"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/default_poster"
-            android:scaleType="centerCrop"
-            tools:ignore="ContentDescription" />
+        android:layout_below="@id/backdrop_img">
 
-        <ImageView
-            android:id="@+id/gradient_img"
-            android:layout_width="match_parent"
-            android:layout_height="225dp"
-            android:src="@drawable/gradient_bg"
-            android:layout_alignParentTop="true"
-            tools:ignore="ContentDescription"/>
-
-        <TextView
-            android:id="@+id/homepage_title"
+        <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/gradient_img"
-            android:layout_marginTop="150dp"
-            android:layout_marginStart="16dp"
-            android:textStyle="bold"
-            android:textSize="40sp"
-            android:textColor="@color/white"
-            android:textAllCaps="true"
-            android:text="@string/watchlist_title"/>
+            android:text="@string/movie" />
 
-        <TextView
-            android:id="@+id/movie_part_title"
-            android:layout_below="@id/backdrop_img"
-            android:layout_width="match_parent"
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/movie_part_title"
-            android:textAllCaps="true"/>
+            android:text="@string/tvshow" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/movies_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/movie_part_title"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"/>
+    </com.google.android.material.tabs.TabLayout>
 
-        <TextView
-            android:id="@+id/show_part_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/movies_rv"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/show_part_title"
-            android:textAllCaps="true" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/shows_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/show_part_title"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"/>
-    </RelativeLayout>
-</ScrollView>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/watchlist_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/watchlist_tabs"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

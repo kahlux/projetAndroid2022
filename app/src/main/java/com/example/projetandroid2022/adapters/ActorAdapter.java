@@ -41,7 +41,7 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.MyViewHolder
         if(url != null) {
             Picasso.get().load(mData.get(i).getUrl()).into(myViewHolder.ImgMovie);
         } else {
-            myViewHolder.ImgMovie.setImageResource(R.drawable.default_poster);
+            myViewHolder.ImgMovie.setImageResource(R.drawable.home_cover);
         }
     }
 
@@ -52,7 +52,6 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private final TextView TvTitle;
         private final TextView role;
-
         private final ImageView ImgMovie;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -60,7 +59,6 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.MyViewHolder
             TvTitle = itemView.findViewById(R.id.actor_name);
             ImgMovie = itemView.findViewById(R.id.actor_item_img);
             role= itemView.findViewById(R.id.actor_job);
-
         }
     }
 }

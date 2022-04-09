@@ -41,7 +41,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.MyView
         if(url != null) {
             Picasso.get().load(mData.get(i).getPosterURL()).into(myViewHolder.ImgMovie);
         } else {
-            myViewHolder.ImgMovie.setImageResource(R.drawable.default_poster);
+            myViewHolder.ImgMovie.setImageResource(R.drawable.home_cover);
         }
     }
 
@@ -58,7 +58,7 @@ public class ResourceAdapter extends RecyclerView.Adapter<ResourceAdapter.MyView
             TvTitle = itemView.findViewById(R.id.home_item_text);
             ImgMovie = itemView.findViewById(R.id.home_item_img);
 
-            itemView.setOnClickListener((v) -> resourceItemClickListener.onResourceClick(mData.get(this.getAdapterPosition()), ImgMovie));
+            itemView.setOnClickListener((v) -> resourceItemClickListener.onResourceClick(mData.get(this.getAdapterPosition())));
         }
     }
 }

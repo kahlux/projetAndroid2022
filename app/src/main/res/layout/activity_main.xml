@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="225dp"
             android:layout_alignParentTop="true"
-            android:src="@drawable/default_poster"
+            android:src="@drawable/home_cover"
             android:scaleType="centerCrop"
             tools:ignore="ContentDescription" />
 
@@ -21,9 +21,9 @@
             android:id="@+id/gradient_img"
             android:layout_width="match_parent"
             android:layout_height="225dp"
-            android:src="@drawable/gradient_bg"
             android:layout_alignParentTop="true"
-            tools:ignore="ContentDescription"/>
+            android:src="@drawable/gradient_bg"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/homepage_title"

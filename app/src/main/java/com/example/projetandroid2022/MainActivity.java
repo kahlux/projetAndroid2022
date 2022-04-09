@@ -4,10 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,12 +23,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -76,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements ResourceItemClick
         }
     }
     @Override
-    public void onResourceClick(Resource resource, ImageView movieImageView) {
+    public void onResourceClick(Resource resource) {
         Intent i = new Intent(this,ResourceActivity.class);
         i.putExtra("resource",  resource);
         startActivity(i);
@@ -93,10 +86,10 @@ public class MainActivity extends AppCompatActivity implements ResourceItemClick
                 URL url = null;
                 if(isShow) {
                     url = new URL("https://api.themoviedb.org/3/tv/"
-                            + resourceId + "/credits?api_key=8c32f074e2ca41b85ea9e1903ac5730f");
+                            + resourceId + "/credits?api_key=8c32f074e2ca41b85ea9e1903ac5730f&language=fr-FR");
                 } else {
                     url = new URL("https://api.themoviedb.org/3/movie/"
-                            + resourceId + "/credits?api_key=8c32f074e2ca41b85ea9e1903ac5730f");
+                            + resourceId + "/credits?api_key=8c32f074e2ca41b85ea9e1903ac5730f&language=fr-FR");
                 }
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");

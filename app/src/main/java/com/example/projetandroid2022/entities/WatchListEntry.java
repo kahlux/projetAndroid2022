@@ -7,6 +7,7 @@ public class WatchListEntry {
     private int id, resourceId, rating;
     private Date dateOfViewing;
     private boolean isShow;
+    private Resource resource;
 
     public WatchListEntry() { }
 
@@ -34,11 +35,9 @@ public class WatchListEntry {
         this.rating = rating;
     }
 
-    public boolean isShow() {
-        return isShow;
-    }
+    public boolean isShow() { return isShow; }
 
-    public void setIfItIsShow(boolean show) {
+    public void setShow(boolean show) {
         isShow = show;
     }
 
@@ -48,5 +47,13 @@ public class WatchListEntry {
 
     public void setDateOfViewing(Date dateOfViewing) {
         this.dateOfViewing = dateOfViewing;
+    }
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public void setResource(Resource resource) {
+        this.resource = resource;
     }
 }

@@ -9,13 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.projetandroid2022.adapters.ActorAdapter;
-import com.example.projetandroid2022.adapters.ResourceAdapter;
 import com.example.projetandroid2022.entities.Resource;
-
-import java.io.Serializable;
 
 public class ResourceActivity extends AppCompatActivity {
     private RecyclerView acteursRV;
@@ -36,12 +32,12 @@ public class ResourceActivity extends AppCompatActivity {
         if(s.getBackdropURL()!=null){
             Picasso.get().load(s.getBackdropURL()).into((ImageView) findViewById(R.id.backdrop_img));
         }else{
-            ((ImageView) findViewById(R.id.backdrop_img)).setImageResource(R.drawable.default_poster);
+            ((ImageView) findViewById(R.id.backdrop_img)).setImageResource(R.drawable.home_cover);
         }
         if(s.getPosterURL()!=null){
             Picasso.get().load(s.getPosterURL()).into((ImageView) findViewById(R.id.poster_img));
         }else{
-            ((ImageView) findViewById(R.id.backdrop_img)).setImageResource(R.drawable.default_poster);
+            ((ImageView) findViewById(R.id.backdrop_img)).setImageResource(R.drawable.home_cover);
         }
         ((TextView)findViewById(R.id.synopsis_text)).setText(s.getSynopsis());
         ((TextView)findViewById(R.id.movie_title)).setText(s.getName());
