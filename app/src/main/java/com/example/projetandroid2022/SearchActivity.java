@@ -1,19 +1,15 @@
 package com.example.projetandroid2022;
 
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.projetandroid2022.adapters.ResourceAdapter;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+
+import com.example.projetandroid2022.adapters.SearchAdapter;
 import com.example.projetandroid2022.adapters.ResourceItemClickListener;
 import com.example.projetandroid2022.entities.Actor;
 import com.example.projetandroid2022.entities.Resource;
@@ -26,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -33,55 +30,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class MainActivity extends AppCompatActivity implements ResourceItemClickListener {
-    private RecyclerView moviesRV;
-    private RecyclerView showsRV;
+public class SearchActivity extends AppCompatActivity implements ResourceItemClickListener {
+    private RecyclerView repRV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_search);
+        ArrayList<String> so = getIntent().getStringArrayListExtra("param");
         //initialisation des View utilisées :
-        moviesRV = findViewById(R.id.movies_rv);
-        showsRV = findViewById(R.id.shows_rv);
+        repRV = findViewById(R.id.repRV);
         //initialisation de la data :
-        RequestTask showsTask = new RequestTask();
-        RequestTask moviesTask = new RequestTask();
-        ArrayList<Resource> tvShows = null;
-        ArrayList<Resource> movies = null;
+        RequestTask repTask = new RequestTask();
+        ArrayList<Resource> repTab = null;
         try {
-            tvShows = showsTask.execute(true).get();
-            movies = moviesTask.execute(false).get();
+            repTab = repTask.execute(so).get();
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
-        if(tvShows != null) {
-            ResourceAdapter showsAdapter = new ResourceAdapter(this, tvShows, this);
-            showsRV.setAdapter(showsAdapter);
-            showsRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
-        } else {
-            //TODO: erreur de connexions générer quelque chose...
-        }
-        if(movies != null) {
-            ResourceAdapter moviesAdapter = new ResourceAdapter(this, movies, this);
-            moviesRV.setAdapter(moviesAdapter);
-            moviesRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+        if(repTab != null) {
+            SearchAdapter moviesAdapter = new SearchAdapter(this, repTab, this);
+            repRV.setAdapter(moviesAdapter);
+            repRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         } else {
             //TODO: erreur de connexions, générer quelque chose...
         }
     }
 
-    public void search(View v){
-        String srch =  ((EditText) (findViewById(R.id.srch))).getText().toString();
-        Intent i = new Intent(this,SearchActivity.class);
-        ArrayList<String> param = new ArrayList<String>();
-        String btntxt = ((Button)v).getText().toString();
-        param.add(srch);
-        param.add(btntxt);
-        i.putExtra("param",  param);
-        startActivity(i);
-    }
     @Override
     public void onResourceClick(Resource resource) {
         Intent i = new Intent(this,ResourceActivity.class);
@@ -90,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements ResourceItemClick
     }
 
     //classe pour générer les ressources de la page d'accueil
-    public class RequestTask extends AsyncTask<Boolean, Void, ArrayList<Resource>> {
+    public class RequestTask extends AsyncTask<ArrayList<String>, Void, ArrayList<Resource>> {
 
         private List<Actor> getActorsFromResourceId(int resourceId, boolean isShow) {
             ArrayList<Actor> response = null;
@@ -186,16 +161,16 @@ public class MainActivity extends AppCompatActivity implements ResourceItemClick
         }
 
         @Override
-        protected ArrayList<Resource> doInBackground(Boolean... booleans) {
+        protected ArrayList<Resource> doInBackground(ArrayList<String>... strings) {
             ArrayList<Resource> response = null;
             String str = "";
             JSONObject json = null;
-            if(booleans[0]) {
-                str = "https://api.themoviedb.org/3/tv/popular" +
-                        "?api_key=8c32f074e2ca41b85ea9e1903ac5730f&language=fr-FR&page=1";
+            if(strings[0].get(1).equals("film")) {
+                str = "https://api.themoviedb.org/3/search/movie?api_key=8c32f074e2ca41b85ea9e1903ac5730f&language=fr-FR&query=" +
+                        strings[0].get(0) + "&page=1&include_adult=false";
             } else {
-                str = "https://api.themoviedb.org/3/movie/popular" +
-                        "?api_key=8c32f074e2ca41b85ea9e1903ac5730f&language=fr-FR&page=1";
+                str = "https://api.themoviedb.org/3/search/tv?api_key=8c32f074e2ca41b85ea9e1903ac5730f&language=fr-FR&query=" +
+                        strings[0].get(0) + "&page=1&include_adult=false";
             }
             URLConnection urlConn = null;
             BufferedReader bufferedReader = null;
@@ -226,8 +201,11 @@ public class MainActivity extends AppCompatActivity implements ResourceItemClick
                     }
                 }
             }
-
-            return decodeResourcesJSON(json, booleans[0]);
+            if(strings[0].get(1).equals("film")){
+                return decodeResourcesJSON(json, false);
+            }else{
+                return decodeResourcesJSON(json, true);
+            }
         }
     }
 }

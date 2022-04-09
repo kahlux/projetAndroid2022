@@ -4,31 +4,31 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14322916666666666" />
-        <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/drawable/delete_button_bg.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/drawable/gradient_bg.xml" value="0.14322916666666666" />
         <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14322916666666666" />
         <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/drawable/ic_menu_camera.xml" value="0.14322916666666666" />
         <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.14322916666666666" />
         <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.14322916666666666" />
-        <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/drawable/layout_bg.xml" value="0.14322916666666666" />
         <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/drawable/side_nav_bar.xml" value="0.14322916666666666" />
-        <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/activity_main.xml" value="0.3168831168831169" />
+        <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/activity_movie.xml" value="0.264" />
-        <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/activity_waitchlist.xml" value="0.12708333333333333" />
-        <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/activity_watchlist.xml" value="0.144" />
-        <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/actor_item.xml" value="0.176" />
+        <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/actor_item.xml" value="0.264" />
         <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/app_bar_main.xml" value="0.17300724637681159" />
         <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/content_main.xml" value="0.1793478260869565" />
-        <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/fragment_watch_list_movie.xml" value="0.13229166666666667" />
-        <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/fragment_watchlist_tv.xml" value="0.13229166666666667" />
-        <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/home_item.xml" value="0.4" />
+        <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/home_item.xml" value="0.264" />
         <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/recyclerview_item_layout.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/recyclerview_row.xml" value="0.264" />
-        <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/layout/watchlist_item.xml" value="0.4" />
         <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/menu/activity_main_drawer.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/lucas/Documents/L3/ProgMobile/projetAndroid2022/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14322916666666666" />
+        <entry key="..\:/taf/projetAndroid2022/app/src/main/res/layout/activity_main.xml" value="0.14375" />
         <entry key="..\:/taf/projetAndroid2022/app/src/main/res/layout/activity_movie.xml" value="0.19610507246376813" />
+        <entry key="..\:/taf/projetAndroid2022/app/src/main/res/layout/activity_resource.xml" value="0.14375" />
+        <entry key="..\:/taf/projetAndroid2022/app/src/main/res/layout/activity_search.xml" value="0.14375" />
+        <entry key="..\:/taf/projetAndroid2022/app/src/main/res/layout/activity_watchlist.xml" value="0.14375" />
         <entry key="..\:/taf/projetAndroid2022/app/src/main/res/layout/actor_item.xml" value="0.19610507246376813" />
+        <entry key="..\:/taf/projetAndroid2022/app/src/main/res/layout/fragment_watchlist_tv.xml" value="0.14375" />
+        <entry key="..\:/taf/projetAndroid2022/app/src/main/res/layout/home_item.xml" value="0.14375" />
+        <entry key="..\:/taf/projetAndroid2022/app/src/main/res/layout/search_item.xml" value="0.14375" />
       </map>
     </option>
   </component>

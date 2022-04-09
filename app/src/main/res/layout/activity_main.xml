@@ -78,5 +78,48 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/srch"
+            android:text="Rechercher un film ou une série"
+            android:layout_below="@+id/shows_rv"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            />
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/srch"
+            android:stretchColumns="0,1"
+            >
+            <TableRow
+                android:layout_width="match_parent">
+                <Button
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/film_rv"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:onClick="search"
+                    android:text="film"
+                    android:layout_column="0"
+                />
+
+            <Button
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/shows_rv"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="15dp"
+                android:onClick="search"
+                android:text="serie"
+                android:layout_column="1"
+                />
+            </TableRow>
+        </TableLayout>
+
+
     </RelativeLayout>
 </ScrollView>
