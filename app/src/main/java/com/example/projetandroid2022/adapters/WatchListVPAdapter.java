@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.projetandroid2022.WatchListFragment;
+import com.example.projetandroid2022.WatchListMovieFragment;
 import com.example.projetandroid2022.entities.WatchListEntry;
 
 import java.util.ArrayList;
@@ -23,20 +23,22 @@ public class WatchListVPAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        List<WatchListEntry> res = new ArrayList<WatchListEntry>();
         switch(position) {
             case 0:
+                List<WatchListEntry> movies = new ArrayList<WatchListEntry>();
                 for(WatchListEntry entry : entries) {
-                    if(!entry.isShow()) res.add(entry);
+                    if(!entry.isShow()) movies.add(entry);
                 }
-                break;
+                return new WatchListMovieFragment(movies);
             case 1:
+                List<WatchListEntry> shows = new ArrayList<WatchListEntry>();
                 for(WatchListEntry entry : entries) {
-                    if(entry.isShow()) res.add(entry);
+                    if(entry.isShow()) shows.add(entry);
                 }
-                break;
+                return new WatchListMovieFragment(shows);
+            default:
+                return new WatchListMovieFragment(null);
         }
-        return new WatchListFragment(res);
     }
 
     @Override

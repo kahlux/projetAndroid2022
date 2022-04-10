@@ -73,6 +73,7 @@ public class WatchListEntryAdapter extends RecyclerView.Adapter<WatchListEntryAd
             posterIV = itemView.findViewById(R.id.watchlist_poster);
             ratingBar = itemView.findViewById(R.id.rating_bar_watchlist);
             Button deleteButton = itemView.findViewById(R.id.watchlist_delete_button);
+            Button shareButton = itemView.findViewById(R.id.watchlist_share_button);
             //on va faire comme pour l'accueil (watchList Clickée -> on va sur la page de la ressource :
             /* itemView.setOnClickListener(v ->
                     resourceItemClickListener.onResourceClick(mData.get(MyViewHolder.this.getAdapterPosition()).getResource())); */
@@ -80,6 +81,8 @@ public class WatchListEntryAdapter extends RecyclerView.Adapter<WatchListEntryAd
                     watchListItemListener.onRatingChanged(mData.get(getAdapterPosition()), val, isUser));
             deleteButton.setOnClickListener(v ->
                     watchListItemListener.onClickDelete(mData.get(getAdapterPosition())));
+            shareButton.setOnClickListener(v ->
+                    watchListItemListener.onClickShare(mData.get(getAdapterPosition())));
         }
     }
 }

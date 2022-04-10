@@ -1,5 +1,7 @@
 package com.example.projetandroid2022;
 
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,14 +20,15 @@ import com.example.projetandroid2022.entities.WatchListEntry;
 
 import java.util.List;
 
-public class WatchListFragment extends Fragment implements WatchListItemListener {
+public class WatchListMovieFragment extends Fragment implements WatchListItemListener {
 
     private List<WatchListEntry> entries;
-    private RecyclerView moviesRV, showsRV;
-    public WatchListFragment(List<WatchListEntry> entries) {
+    private RecyclerView moviesRV;
+    public WatchListMovieFragment(List<WatchListEntry> entries) {
         this.entries = entries;
     }
     private DBHandler db;
+    private WatchListEntryAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,8 +36,8 @@ public class WatchListFragment extends Fragment implements WatchListItemListener
         View res = inflater.inflate(R.layout.fragment_watchlist_movie, container, false);
         moviesRV = res.findViewById(R.id.watchlist_movies_rv);
 
-        WatchListEntryAdapter moviesAdapter = new WatchListEntryAdapter(getActivity(), entries, this);
-        moviesRV.setAdapter(moviesAdapter);
+        adapter = new WatchListEntryAdapter(getActivity(), entries, this);
+        moviesRV.setAdapter(adapter);
         moviesRV.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false));
         return res;
     }
@@ -44,10 +47,12 @@ public class WatchListFragment extends Fragment implements WatchListItemListener
         db = new DBHandler(getActivity());
 
         db.deleteById(entry.getId());
-
         Toast.makeText(getActivity(),
-                "La ressource " + entry.getResource().getName() + "viens d'être supprimée."
+                "Le film " + entry.getResource().getName() + " viens d'être supprimée."
                 , Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(getActivity(), WatchListActivity.class));
+        getActivity().finish();
     }
 
     @Override
@@ -59,7 +64,18 @@ public class WatchListFragment extends Fragment implements WatchListItemListener
         }
 
         Toast.makeText(getActivity(),
-                "La note de " + entry.getResource().getName()+ " est maintenant de " + v + "/5"
+                "La note du film " + entry.getResource().getName()+ " est maintenant de " + v + "/5"
                 , Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClickShare(WatchListEntry entry) {
+        Intent myIntent = new Intent(Intent.ACTION_SEND);
+        myIntent.setType("text/plain");
+        String body = "J'ai vu le film " + entry.getResource().getName() + ", je lui ai donné une note de " + entry.getRating() + "/5";
+        String sub = "Your Subject";
+        myIntent.putExtra(Intent.EXTRA_SUBJECT,sub);
+        myIntent.putExtra(Intent.EXTRA_TEXT,body);
+        startActivity(Intent.createChooser(myIntent, "Partagez avec"));
     }
 }
