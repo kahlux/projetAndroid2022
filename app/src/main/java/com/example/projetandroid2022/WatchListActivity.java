@@ -1,5 +1,6 @@
 package com.example.projetandroid2022;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -68,7 +69,6 @@ public class WatchListActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                vpAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -88,12 +88,6 @@ public class WatchListActivity extends AppCompatActivity {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
-    }
-
-    @Override
-    protected void onResumeFragments() {
-        super.onResumeFragments();
-
     }
 
     public class RequestTask extends AsyncTask<Resource, Void, Resource> {

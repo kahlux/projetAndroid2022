@@ -36,9 +36,9 @@ public class WatchListMovieFragment extends Fragment implements WatchListItemLis
         View res = inflater.inflate(R.layout.fragment_watchlist_movie, container, false);
         moviesRV = res.findViewById(R.id.watchlist_movies_rv);
 
-        adapter = new WatchListEntryAdapter(getActivity(), entries, this);
-        moviesRV.setAdapter(adapter);
+        adapter = new WatchListEntryAdapter(getContext(), entries, this);
         moviesRV.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false));
+        moviesRV.setAdapter(adapter);
         return res;
     }
 
@@ -48,7 +48,7 @@ public class WatchListMovieFragment extends Fragment implements WatchListItemLis
 
         db.deleteById(entry.getId());
         Toast.makeText(getActivity(),
-                "Le film " + entry.getResource().getName() + " viens d'être supprimée."
+                "Le film " + entry.getResource().getName() + " viens d'être supprimé."
                 , Toast.LENGTH_SHORT).show();
 
         startActivity(new Intent(getActivity(), WatchListActivity.class));
@@ -61,11 +61,10 @@ public class WatchListMovieFragment extends Fragment implements WatchListItemLis
 
         if(b) {
             db.updateByRating(entry.getId(), v);
+            Toast.makeText(getActivity(),
+                    "La note du film " + entry.getResource().getName()+ " est maintenant de " + v + "/5"
+                    , Toast.LENGTH_SHORT).show();
         }
-
-        Toast.makeText(getActivity(),
-                "La note du film " + entry.getResource().getName()+ " est maintenant de " + v + "/5"
-                , Toast.LENGTH_SHORT).show();
     }
 
     @Override

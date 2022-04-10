@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,14 +39,16 @@ import java.util.concurrent.ExecutionException;
 public class MainActivity extends AppCompatActivity implements ResourceItemClickListener {
     private RecyclerView moviesRV;
     private RecyclerView showsRV;
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         //initialisation des View utilisées :
         moviesRV = findViewById(R.id.movies_rv);
         showsRV = findViewById(R.id.shows_rv);
+        toolbar = findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
         //initialisation de la data :
         RequestTask showsTask = new RequestTask();
         RequestTask moviesTask = new RequestTask();
@@ -88,6 +93,33 @@ public class MainActivity extends AppCompatActivity implements ResourceItemClick
         startActivity(i);
     }
     public void goToWatchlist(View v){
+        Intent i = new Intent(this,WatchListActivity.class);
+        startActivity(i);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_watchlist) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void goToWatchList(MenuItem item) {
         Intent i = new Intent(this,WatchListActivity.class);
         startActivity(i);
     }
