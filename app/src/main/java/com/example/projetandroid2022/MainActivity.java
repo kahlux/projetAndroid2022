@@ -36,7 +36,6 @@ import java.util.concurrent.ExecutionException;
 public class MainActivity extends AppCompatActivity implements ResourceItemClickListener {
     private RecyclerView moviesRV;
     private RecyclerView showsRV;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,9 +87,14 @@ public class MainActivity extends AppCompatActivity implements ResourceItemClick
         i.putExtra("resource",  resource);
         startActivity(i);
     }
+    public void goToWatchlist(View v){
+        Intent i = new Intent(this,WatchListActivity.class);
+        startActivity(i);
+    }
 
     //classe pour générer les ressources de la page d'accueil
     public class RequestTask extends AsyncTask<Boolean, Void, ArrayList<Resource>> {
+
 
         private List<Actor> getActorsFromResourceId(int resourceId, boolean isShow) {
             ArrayList<Actor> response = null;

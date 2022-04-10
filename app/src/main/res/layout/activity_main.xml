@@ -94,9 +94,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/srch"
             android:stretchColumns="0,1"
+            android:id="@+id/srchTable"
             >
             <TableRow
-                android:layout_width="match_parent">
+                android:layout_width="match_parent"
+                >
                 <Button
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/film_rv"
@@ -120,6 +122,14 @@
             </TableRow>
         </TableLayout>
 
-
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/srchTable"
+            android:id="@+id/wlist"
+            android:text="Aller voir ma Watchlist"
+            android:onClick="goToWatchlist"
+            android:layout_marginTop="16dp"
+            tools:ignore="NotSibling" />
     </RelativeLayout>
 </ScrollView>
