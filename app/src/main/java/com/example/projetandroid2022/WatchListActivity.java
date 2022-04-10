@@ -35,6 +35,7 @@ public class WatchListActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     ViewPager2 viewPager;
     private DBHandler db;
+    int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +54,13 @@ public class WatchListActivity extends AppCompatActivity {
                 resource.setShow(entry.isShow());
                 try {
                     resource = rq.execute(resource).get();
+                    entry.setResource(resource);
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
                 }
-                entry.setResource(resource);
             }
         }
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
         vpAdapter = new WatchListVPAdapter(this, entries);
         viewPager.setAdapter(vpAdapter);
 
@@ -87,6 +87,12 @@ public class WatchListActivity extends AppCompatActivity {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
+    }
+
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+
     }
 
     public class RequestTask extends AsyncTask<Resource, Void, Resource> {

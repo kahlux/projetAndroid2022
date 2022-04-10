@@ -74,12 +74,15 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <RatingBar
-            android:id="@+id/ratingBar"
+            android:id="@+id/rating_bar_resource"
             style="?android:attr/ratingBarStyleIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:isIndicator="false"/>
 
         <Button
             android:id="@+id/add_watchlist_button"

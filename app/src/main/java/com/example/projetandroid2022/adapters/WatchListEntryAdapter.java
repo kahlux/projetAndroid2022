@@ -23,13 +23,13 @@ public class WatchListEntryAdapter extends RecyclerView.Adapter<WatchListEntryAd
 
     Context context;
     List<WatchListEntry> mData;
-    ResourceItemClickListener resourceItemClickListener;
+    WatchListItemListener resourceItemClickListener;
     WatchListItemListener watchListItemListener;
 
-    public WatchListEntryAdapter(Context context, List<WatchListEntry> mData, ResourceItemClickListener listener) {
+    public WatchListEntryAdapter(Context context, List<WatchListEntry> mData, WatchListItemListener listener) {
         this.context = context;
         this.mData = mData;
-        resourceItemClickListener = listener;
+        watchListItemListener = listener;
     }
 
     @NonNull
@@ -43,14 +43,16 @@ public class WatchListEntryAdapter extends RecyclerView.Adapter<WatchListEntryAd
     public void onBindViewHolder(@NonNull WatchListEntryAdapter.MyViewHolder myViewHolder, int i) {
         WatchListEntry entry = mData.get(i);
         Resource resource = entry.getResource();
-        myViewHolder.titleTV.setText(resource.getName());
-        myViewHolder.dateOfViewTV.setText(entry.getDateOfViewing().toString());
-        if(resource.getPosterURL() != null) {
-            Picasso.get().load(resource.getPosterURL()).into(myViewHolder.posterIV);
-        } else {
-            myViewHolder.posterIV.setImageResource(R.drawable.default_poster);
+        if(resource != null) {
+            myViewHolder.titleTV.setText(resource.getName());
+            myViewHolder.dateOfViewTV.setText(entry.getDateOfViewing().toString());
+            if(resource.getPosterURL() != null) {
+                Picasso.get().load(resource.getPosterURL()).into(myViewHolder.posterIV);
+            } else {
+                myViewHolder.posterIV.setImageResource(R.drawable.default_poster);
+            }
+            myViewHolder.ratingBar.setRating(entry.getRating());
         }
-        myViewHolder.ratingBar.setRating(entry.getRating());
     }
 
     @Override
@@ -69,11 +71,11 @@ public class WatchListEntryAdapter extends RecyclerView.Adapter<WatchListEntryAd
             titleTV = itemView.findViewById(R.id.watchlist_movie_title);
             dateOfViewTV = itemView.findViewById(R.id.watchlist_date);
             posterIV = itemView.findViewById(R.id.watchlist_poster);
-            ratingBar = itemView.findViewById(R.id.ratingBar);
+            ratingBar = itemView.findViewById(R.id.rating_bar_watchlist);
             Button deleteButton = itemView.findViewById(R.id.watchlist_delete_button);
             //on va faire comme pour l'accueil (watchList Clickée -> on va sur la page de la ressource :
-            itemView.setOnClickListener(v ->
-                    resourceItemClickListener.onResourceClick(mData.get(MyViewHolder.this.getAdapterPosition()).getResource()));
+            /* itemView.setOnClickListener(v ->
+                    resourceItemClickListener.onResourceClick(mData.get(MyViewHolder.this.getAdapterPosition()).getResource())); */
             ratingBar.setOnRatingBarChangeListener((ratingBar, val, isUser) ->
                     watchListItemListener.onRatingChanged(mData.get(getAdapterPosition()), val, isUser));
             deleteButton.setOnClickListener(v ->

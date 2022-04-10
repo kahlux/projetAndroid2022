@@ -5,7 +5,9 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/layout_bg"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="8dp">
 
     <ImageView
         android:id="@+id/watchlist_poster"
@@ -43,23 +45,34 @@
         android:text="Vu le : 16/05/22"/>
 
         <RatingBar
-            android:id="@+id/ratingBar"
+            android:id="@+id/rating_bar_watchlist"
             style="?android:attr/ratingBarStyleIndicator"
             android:layout_width="wrap_content"
             android:layout_height="40sp"
             app:layout_constraintTop_toBottomOf="@id/watchlist_date"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/watchlist_movie_title"
             android:layout_marginTop="8dp"
-            app:layout_constraintLeft_toLeftOf="@id/watchlist_movie_title"/>
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:isIndicator="false"/>
 
         <Button
             android:id="@+id/watchlist_delete_button"
-            android:layout_width="40sp"
-            android:layout_height="40sp"
-            app:layout_constraintLeft_toRightOf="@id/ratingBar"
-            app:layout_constraintBottom_toBottomOf="@id/ratingBar"
-            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintLeft_toRightOf="@id/rating_bar_watchlist"
+            app:layout_constraintBottom_toBottomOf="@id/rating_bar_watchlist"
             android:background="@drawable/delete_button_bg"
             android:backgroundTint="@color/black"/>
+    
+        <Button
+            android:id="@+id/watchlist_share_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="@id/watchlist_delete_button"
+            app:layout_constraintLeft_toRightOf="@id/watchlist_delete_button"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@drawable/share_button_bg"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetandroid2022.adapters.ResourceAdapter;
 import com.example.projetandroid2022.adapters.ResourceItemClickListener;
+import com.example.projetandroid2022.db.DBHandler;
 import com.example.projetandroid2022.entities.Actor;
 import com.example.projetandroid2022.entities.Resource;
 
@@ -163,11 +163,13 @@ public class MainActivity extends AppCompatActivity implements ResourceItemClick
                         catch(JSONException e) { resource.setDate("Date inconnue"); }
                         try { resource.setName(resourceJSON.getString("name")); }
                         catch(JSONException e) { resource.setName("Sans nom"); }
+                        resource.setShow(true);
                     } else {
                         try { resource.setDate(resourceJSON.getString("release_date")); }
                         catch(JSONException e) { resource.setDate("Date inconnue"); }
                         try { resource.setName(resourceJSON.getString("title")); }
                         catch(JSONException e) { resource.setName("titre"); }
+                        resource.setShow(false);
                     }
                     try { resource.setPosterURL("https://image.tmdb.org/t/p/original"+resourceJSON.getString("poster_path")); }
                     catch(JSONException e) { resource.setPosterURL(null); }

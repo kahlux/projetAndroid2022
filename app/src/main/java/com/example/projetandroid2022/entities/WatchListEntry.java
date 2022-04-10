@@ -4,8 +4,9 @@ import java.sql.Date;
 
 public class WatchListEntry {
 
-    private int id, resourceId, rating;
-    private Date dateOfViewing;
+    private int id, resourceId;
+    private float rating;
+    private String dateOfViewing;
     private boolean isShow;
     private Resource resource;
 
@@ -27,11 +28,11 @@ public class WatchListEntry {
         this.resourceId = resourceId;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 
@@ -41,19 +42,19 @@ public class WatchListEntry {
         isShow = show;
     }
 
-    public Date getDateOfViewing() {
+    public String getDateOfViewing() {
         return dateOfViewing;
     }
 
-    public void setDateOfViewing(Date dateOfViewing) {
+    public void setDateOfViewing(String dateOfViewing) {
         this.dateOfViewing = dateOfViewing;
-    }
-
-    public Resource getResource() {
-        return resource;
     }
 
     public void setResource(Resource resource) {
         this.resource = resource;
+    }
+
+    public Resource getResource() {
+        return resource;
     }
 }

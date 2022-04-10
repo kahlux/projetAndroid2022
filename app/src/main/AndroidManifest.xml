@@ -36,6 +36,10 @@
             android:name=".ResourceActivity"
             android:exported="false"
             android:label="@string/app_name" />
+        <activity
+            android:name=".WatchListActivity"
+            android:exported="false"
+            android:label="@string/app_name"/>
     </application>
 
 </manifest>

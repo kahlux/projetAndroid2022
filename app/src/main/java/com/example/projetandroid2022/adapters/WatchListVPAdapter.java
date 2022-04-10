@@ -5,13 +5,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.projetandroid2022.WatchListMovieFragment;
-import com.example.projetandroid2022.WatchListTVFragment;
+import com.example.projetandroid2022.WatchListFragment;
 import com.example.projetandroid2022.entities.WatchListEntry;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WatchListVPAdapter extends FragmentStateAdapter {
 
@@ -25,15 +23,20 @@ public class WatchListVPAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
+        List<WatchListEntry> res = new ArrayList<WatchListEntry>();
         switch(position) {
             case 0:
-                entries = entries.stream().filter(WatchListEntry::isShow).collect(Collectors.toList());
-                return new WatchListMovieFragment(entries);
+                for(WatchListEntry entry : entries) {
+                    if(!entry.isShow()) res.add(entry);
+                }
+                break;
             case 1:
-                entries = entries.stream().filter(x -> !x.isShow()).collect(Collectors.toList());
-                return new WatchListTVFragment(entries);
+                for(WatchListEntry entry : entries) {
+                    if(entry.isShow()) res.add(entry);
+                }
+                break;
         }
-        return new WatchListMovieFragment(entries);
+        return new WatchListFragment(res);
     }
 
     @Override
